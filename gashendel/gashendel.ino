@@ -1,5 +1,5 @@
 #include "types.h"
-#define IDLE_TIMEOUT
+//#define IDLE_TIMEOUT
 
 #define DEBUG
 
@@ -108,6 +108,12 @@ void setup() {
 }
 
 void loop() {
+  throttle = read_throttle();
+  set_pwm(throttle, true);
+  Serial.print(throttle);
+
+
+/*
 #ifdef IDLE_TIMEOUT
     if (is_idle) {
               if (digitalRead(btn_in)) {
@@ -149,7 +155,7 @@ void loop() {
                 digitalWrite(permission_pin, HIGH) ;
                 }
                 
-                if (digitalRead(btn_in) && motorConected == LOW || millis() - lastPermission > permission_time) {
+                if (digitalRead(btn_in) && ((motorConected == LOW) || millis() - lastPermission > permission_time)) {
                     current_state = neutral_btn;
                      
                 }
@@ -195,6 +201,6 @@ void loop() {
     Serial.println(current_state);
 
 #endif
-
+*/
     delay(1);
 }
